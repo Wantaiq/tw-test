@@ -1,17 +1,8 @@
 <script setup lang="ts">
-  import useProductsStore from '@/stores/productsStore';
-  import { storeToRefs } from 'pinia';
-  const { products } = storeToRefs(useProductsStore());
-
+  const emit = defineEmits(['filter']);
   const handleStockFilter = (event: Event) => {
-    const eventTarget = event.target as HTMLInputElement;
-    if (eventTarget.checked) {
-      products.value.filter(product => {
-        console.log(product.availabilityStatus === 'In Stock');
-        return product.availabilityStatus === 'In Stock';
-      });
-    } else {
-    }
+    const target = event.target as HTMLInputElement;
+    emit('filter', target.checked);
   };
 </script>
 
