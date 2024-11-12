@@ -2,37 +2,57 @@
   import ProductFilter from '@/components/ProductFilter.vue';
   import ProductGrid from '@/components/ProductGrid.vue';
   import ProductSort from '@/components/ProductSort.vue';
-  import useProducts from '@/composables/useProducts';
-  import useProductsStore from '@/stores/productsStore';
-  import { storeToRefs } from 'pinia';
-  import { watch } from 'vue';
+  import useProducts, { type ProductType } from '@/composables/useProducts';
+  import { ref, watch, type Ref } from 'vue';
+
   const { data } = useProducts();
-  const { products } = storeToRefs(useProductsStore());
+  const filteredProducts: Ref<[]> | Ref<ProductType[]> = ref([]);
 
   watch(data, newData => {
     if (newData) {
-      products.value = newData;
+      filteredProducts.value = newData;
     }
   });
 
+  const sortPreference = ref('');
+
   const handleSort = (value: string) => {
-    if (value === 'prAsc') {
-      products.value = [...products.value].sort((a, b) => a.price - b.price);
+    sortPreference.value = value;
+    if (sortPreference.value === 'prAsc') {
+      filteredProducts.value = [...filteredProducts.value].sort(
+        (a, b) => a.price - b.price,
+      );
     } else {
-      products.value = [...products.value].sort((a, b) => a.price + b.price);
+      filteredProducts.value = [...filteredProducts.value].sort(
+        (a, b) => a.price + b.price,
+      );
+    }
+  };
+
+  const handleStockFilter = (isChecked: boolean) => {
+    if (isChecked) {
+      filteredProducts.value = filteredProducts.value.filter(
+        product => product.availabilityStatus !== 'Low Stock',
+      );
+    } else {
+      filteredProducts.value = data.value || [];
+    }
+
+    if (sortPreference.value) {
+      handleSort(sortPreference.value);
     }
   };
 </script>
 
 <template>
   <div class="flex flex-col gap-3 items-start px-5 mb-6">
-    <ProductFilter />
+    <ProductFilter @filter="handleStockFilter" />
     <ProductSort @selected-option="handleSort" />
   </div>
   <Suspense>
     <ProductGrid
-      v-if="products.length"
-      :products="products" />
+      v-if="filteredProducts.length"
+      :products="filteredProducts" />
     <template #fallback>Loading...</template>
   </Suspense>
 </template>
