@@ -25,8 +25,10 @@
 </script>
 
 <template>
-  <ProductFilter />
-  <ProductSort @selected-option="handleSort" />
+  <div class="flex flex-col gap-3 items-start px-5 mb-6">
+    <ProductFilter />
+    <ProductSort @selected-option="handleSort" />
+  </div>
   <Suspense>
     <ProductGrid
       v-if="products.length"
