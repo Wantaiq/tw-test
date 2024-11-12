@@ -19,12 +19,12 @@
   const handleSort = (value: string) => {
     sortPreference.value = value;
     if (sortPreference.value === 'prAsc') {
-      filteredProducts.value = [...filteredProducts.value].sort(
+      filteredProducts.value = filteredProducts.value.toSorted(
         (a, b) => a.price - b.price,
       );
-    } else {
-      filteredProducts.value = [...filteredProducts.value].sort(
-        (a, b) => a.price + b.price,
+    } else if (sortPreference.value === 'prDesc') {
+      filteredProducts.value = filteredProducts.value.toSorted(
+        (a, b) => b.price - a.price,
       );
     }
   };
