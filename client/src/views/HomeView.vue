@@ -1,9 +1,5 @@
-<script setup lang="ts">
-  import AppWorld from '@/components/AppWorld.vue';
-</script>
-
 <template>
   <main>
-    <AppWorld />
+    <h1>Home View</h1>
   </main>
 </template>
