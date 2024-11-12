@@ -7,6 +7,7 @@ export type ProductType = {
   thumbnail: string;
   title: string;
   price: number;
+  availabilityStatus: string;
 };
 type ProductResponseType = { products: ProductType[] };
 
