@@ -2,7 +2,7 @@
   import type { ProductType } from '@/composables/useProducts';
   import AppCard from './AppCard.vue';
 
-  const props = defineProps<ProductType>();
+  const props = defineProps<Omit<ProductType, 'availabilityStatus'>>();
   const { description, price, thumbnail, title } = props;
 </script>
 
