@@ -21,15 +21,17 @@
 </script>
 
 <template>
-  <AppSelect @selected="handleSelect">
-    <template #options>
-      <option
-        v-for="option in sortOptions"
-        :key="option.name"
-        :selected="option.selected"
-        :value="option.value">
-        {{ option.name }}
-      </option>
-    </template>
-  </AppSelect>
+  <div>
+    <AppSelect @selected="handleSelect">
+      <template #options>
+        <option
+          v-for="option in sortOptions"
+          :key="option.name"
+          :selected="option.selected"
+          :value="option.value">
+          {{ option.name }}
+        </option>
+      </template>
+    </AppSelect>
+  </div>
 </template>
