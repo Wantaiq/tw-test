@@ -2,10 +2,10 @@
   import ProductFilter from '@/components/ProductFilter.vue';
   import ProductGrid from '@/components/ProductGrid.vue';
   import ProductSort from '@/components/ProductSort.vue';
-  import useProductFilters from '@/composables/useProductsSort';
   import useProductsApi, {
     type ProductType,
   } from '@/composables/useProductsApi';
+  import useProductsSort from '@/composables/useProductsSort';
   import { ref, watch } from 'vue';
 
   const { loadMoreQuery } = useProductsApi();
@@ -14,7 +14,7 @@
     fetchNextPage,
     hasNextPage,
   } = loadMoreQuery();
-  const { sortByPrice } = useProductFilters();
+  const { sortByPrice } = useProductsSort();
 
   const extractProductsFromPages = () => {
     return (
