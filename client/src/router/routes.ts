@@ -1,11 +1,11 @@
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import HomeView from '@/views/HomeView.vue';
+import ProductsView from '@/views/ProductsView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
+    name: 'products',
+    component: ProductsView,
     meta: {
       layout: DefaultLayout,
     },

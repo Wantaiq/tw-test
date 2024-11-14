@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { ProductType } from '@/composables/useProducts';
+  import type { ProductType } from '@/composables/useProductsApi';
   import ProductCard from './ProductCard.vue';
 
   type ProductGridPropsType = Omit<ProductType, 'availabilityStatus'>[];

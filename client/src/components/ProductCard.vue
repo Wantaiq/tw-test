@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ProductType } from '@/composables/useProducts';
+  import type { ProductType } from '@/composables/useProductsApi';
   import AppCard from './AppCard.vue';
 
   const props = defineProps<Omit<ProductType, 'availabilityStatus'>>();
